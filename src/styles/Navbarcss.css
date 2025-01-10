@@ -1,0 +1,32 @@
+.navbar {
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 40px;
+}
+.navbar .logo {
+  height: 3rem;
+  width: 12rem;
+  object-fit: cover;
+  color: #000;
+}
+
+.logo img {
+  height: 100%;
+  width: 100%;
+}
+#navbar_container {
+    display: flex;
+    gap: 2rem;
+}
+
+#navbar_container h2 {
+
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: "Anton", serif;
+  font-optical-sizing: auto;
+}
