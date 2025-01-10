@@ -1,19 +1,32 @@
-import { useGSAP } from "@gsap/react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import "react";
 import "../styles/Herocss.css";
-import { useRef } from "react";
 
 const Hero = () => {
   const heroref = useRef();
 
-  useGSAP(() => {
-    gsap.from("#hero_container h2", {
-     opacity:0,
-      duration: 0.5,
-      ease:"power1.in"
-    });
-  });
+  useEffect(() => {
+    // Use gsap.context() to ensure proper scoping in React
+    const ctx = gsap.context(() => {
+      gsap.from("#hero_container h2", {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power1.in",
+      });
+
+      gsap.from("#hero_container h3", {
+        opacity: 0,
+        y: 20,
+        delay: 0.3,
+        duration: 0.5,
+        ease: "power1.out",
+      });
+    }, heroref);
+
+    // Cleanup function to remove the context
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div>
       <div id="hero_container" ref={heroref}>
@@ -22,7 +35,7 @@ const Hero = () => {
           Meets <span style={{ color: "#B74343" }}>Bravery</span>
         </h3>
         <div style={{ textAlign: "center", width: "50%" }}>
-          <button className="btn"> Discover More</button>
+          <button className="btn">Discover More</button>
         </div>
       </div>
     </div>
